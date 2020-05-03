@@ -5,6 +5,7 @@ pipeline {
             steps {
                 sh 'python --version'
                 echo "asd"
+                error("Deliberately failing this pipeline")
             }
         }
     }
@@ -13,7 +14,7 @@ pipeline {
     	always {            
             emailext (
             	subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}",
-			    to: 'johan.kok@u.nus.edu;JKOK005@e.ntu.edu.sg;annihilation200@gmail.com', 
+			    to: 'JKOK005@e.ntu.edu.sg', 
 			    body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
             )       
         }
